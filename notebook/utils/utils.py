@@ -133,7 +133,7 @@ class AmazonBooksDataset(Dataset):
         self.data = cate_df.values
 
     def train_valid_test_split(self, train_size=0.8, valid_size=0.1, test_size=0.1):
-        field_dims = [self.data[:-1].max().astype(int) + 1]
+        field_dims = (self.data.max(axis=0).astype(int) + 1).tolist()[:-1]
         num_data = len(self.data)
         num_train = int(train_size * num_data)
         num_test = int(test_size * num_data)
